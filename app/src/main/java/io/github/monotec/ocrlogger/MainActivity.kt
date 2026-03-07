@@ -22,7 +22,7 @@ import androidx.core.content.ContextCompat
 
 
 class MainActivity : ComponentActivity() {
-    //test
+
     private val requestCameraPermission =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             setMainContent()
