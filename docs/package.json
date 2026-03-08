@@ -1,0 +1,31 @@
+{
+    "type": "commonjs",
+    "scripts": {
+        "build": "run-s build:* --continue-on-error --print-label",
+        "build:user_manual": "npx md-to-pdf --config-file ./md-to-pdf-config.js ./docs/OcrLogTemplate/user_manual.md",
+        "build:specifications": "npx md-to-pdf --config-file ./md-to-pdf-config.js ./docs/OcrLogTemplate/specifications.md",
+        "build:internal_design": "npx md-to-pdf --config-file ./md-to-pdf-config.js ./docs/OcrLogTemplate/internal_design.md",
+        "build:screen_flow": "npx md-to-pdf --config-file ./md-to-pdf-config.js ./docs/OcrLogTemplate/screen_flow.md",
+        "build:test_spec": "npx md-to-pdf --config-file ./md-to-pdf-config.js ./docs/OcrLogTemplate/test_spec.md",
+        "lint": "run-s lint:* --continue-on-error --print-label",
+        "lint:cspell-all": "npx cspell lint --gitignore --show-context --show-suggestions --dot .",
+        "lint:markdownlint-all": "npx markdownlint-cli2 --config .markdownlint-cli2.jsonc",
+        "lint:textlint-all": "npx textlint README.md docs"
+    },
+    "devDependencies": {
+        "@textlint-ja/textlint-rule-no-synonyms": "^1.3.0",
+        "cspell-cli": "^9.7.0",
+        "markdownlint-cli2": "^0.21.0",
+        "marked-admonition-extension": "^0.0.4",
+        "marked-extended-tables": "^2.0.1",
+        "marked-katex-extension": "^5.1.7",
+        "md-to-pdf": "^5.2.5",
+        "npm-run-all2": "^8.0.4",
+        "sudachi-synonyms-dictionary": "^17.0.0",
+        "textlint": "^15.5.2",
+        "textlint-filter-rule-comments": "^1.2.2",
+        "textlint-rule-ja-no-orthographic-variants": "^2.0.0",
+        "textlint-rule-preset-ja-spacing": "^2.4.3",
+        "textlint-rule-preset-ja-technical-writing": "^12.0.2"
+    }
+}

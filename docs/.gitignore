@@ -1,0 +1,25 @@
+# ========================================
+# md2pdf-doc-template äJî≠ÉcÅ[Éã
+# ========================================
+
+# lint tools
+.markdownlint.yaml
+.markdownlint-cli2.jsonc
+.textlintrc
+cspell.json
+
+# build config
+md-to-pdf-config.js
+
+# Node modules
+node_modules/
+
+# build output
+# output/
+
+# ========================================
+# OS files
+# ========================================
+
+.DS_Store
+Thumbs.db

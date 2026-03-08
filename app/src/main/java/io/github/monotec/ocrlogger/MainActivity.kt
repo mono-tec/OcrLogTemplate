@@ -1,31 +1,20 @@
 package io.github.monotec.ocrlogger
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import io.github.monotec.ocrlogger.ui.CameraPreviewScreen
-import io.github.monotec.ocrlogger.ui.theme.OcrLogTemplateTheme
-
-import android.Manifest
-import android.content.pm.PackageManager
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-
-
+import io.github.monotec.ocrlogger.database.AppDatabase
+import io.github.monotec.ocrlogger.ui.App
 
 class MainActivity : ComponentActivity() {
 
     private val requestCameraPermission =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            setMainContent()
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { _ ->
+            showApp()
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,15 +25,18 @@ class MainActivity : ComponentActivity() {
                 Manifest.permission.CAMERA
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            setMainContent()
+            showApp()
         } else {
             requestCameraPermission.launch(Manifest.permission.CAMERA)
         }
     }
 
-    private fun setMainContent() {
+    private fun showApp() {
+        val db = AppDatabase.getInstance(this)
+        val dao = db.sendLogDao()
+
         setContent {
-            CameraPreviewScreen()
+            App(dao = dao)
         }
     }
 }
